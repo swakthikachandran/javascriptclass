@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMVALIDATION</title>
+</head>
+<body>
+    <h2>Resistration Form</h2>
+
+    <form id="ResistrationFORM" onsubmit="return validateForm()">
+    <label for="name">NAME:</label>
+    <input type="text" id="name" name="name"  required>
+    <div id="nameError" class="error"></div>
+    <br><br>
+
+    <label for="email">email:</label>
+    <input type="email" name="email" id="email"required>
+    <div id="emailError" class="error"></div>
+    <br><br>
+    
+    <label for="password">password:</label>
+    <input type="password" name="password" id="passwword"required>
+    <div id="passwordError" class="error"></div>
+    <br><br>
+
+    <label for="phone">phone:</label>
+    <input type="phone" name="phone" id="phone"required>
+    <div id="numberError" class="error"></div>
+    <br><br>
+    <button type="submit">submit</button>
+</form>
+<script>
+    function validateName(name)
+    {
+        const regex=/^[A-Aa-Z\s]+$/;
+        if(name.trim()===""){
+            return "name cannot be empty"
+
+        }
+        if(regex.test(name)){
+            return "name can only have letters and spaces"
+    }
+    return "name is valid"
+}
+function validateEmail(email){
+    const regex=/^[A-Za-Z0-9._%+-]+@[A-Za-Z]{2,}$/;
+    
+}
+{
+if(name.trim()===""){
+            return "email cannot be empty"
+
+        }
+        if(regex.test(email)){
+            return "email can only have letters and spaces"
+    }
+    return "email is valid"
+}
+
+
+function validatePassword(password){
+    const regex=/^[A-Za-Z0-9._%+-]+@[A-Za-Z]{2,}$/;
+    
+}
+{
+if(name.trim()===""){
+            return "password cannot be empty"
+
+        }
+        if(regex.test(password)){
+            return "passwords can only have numbers and spaces"
+    }
+    return "password  is valid"
+}
+
+
+function validatePhone(phone){
+    const regex=/^[0-9]{10}$/
+    
+if(phone.trim()===""){
+            return "phonenumber cannot be empty"
+
+        }
+        if(regex.test(phone)){
+            return "phonenumber can only have numbers and spaces"
+    }
+    return "phonenumber is valid"
+}
+
+document.getElementById("nameError").innerText=nameError==="name is valid" ?"":nameError;
+
+document.getElementById("emailError").innerText=nameError==="email is valid" ?"":emailError;
+
+document.getElementById("passwordError").innerText=nameError==="password is valid" ?"":password;
+
+document.getElementById("phoneError").innerText=nameError==="phone is valid" ?"":phone;
+</script>
+    
+
+</body>
+</html>

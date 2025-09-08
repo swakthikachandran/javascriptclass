@@ -1,0 +1,38 @@
+
+class Book {
+  constructor(title, author, publishedYear) {
+    this.title = title;
+    this.author = author;
+    this.publishedYear = new Date(publishedYear); // Using Date object
+  }
+
+  
+  getSummary() {
+    return `${this.title} by ${this.author}, published in ${this.publishedYear.getFullYear()}`;
+  }
+}
+
+
+class EBook extends Book {
+  constructor(title, author, publishedYear, fileSize) {
+    super(title, author, publishedYear); // Calling parent constructor
+    this.fileSize = fileSize;
+  }
+
+  
+  getSummary() {
+    return `${super.getSummary()} [File Size: ${this.fileSize}MB]`;
+  }
+}
+const book1 = new Book("Atomic Habits", "James Clear", "2018-10-16");
+const book2 = new Book("The Alchemist", "Paulo Coelho", "1988-01-01");
+
+
+const ebook1 = new EBook("Deep Work", "Cal Newport", "2016-01-05", 2.5);
+const ebook2 = new EBook("Clean Code", "Robert C. Martin", "2008-08-01", 4.2);
+
+
+console.log(book1.getSummary());
+console.log(book2.getSummary());
+console.log(ebook1.getSummary());
+console.log(ebook2.getSummary());

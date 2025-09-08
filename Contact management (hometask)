@@ -1,0 +1,63 @@
+// Contact Management Module
+
+function Contact(name, phone, email) {
+  this.name = name;
+  this.phone = phone;
+  this.email = email;
+
+
+  this.display = function () {
+    const { name, phone, email } = this; // Destructuring
+    console.log(`Name: ${name}, Phone: ${phone}, Email: ${email}`);
+  };
+}
+
+
+let contacts = [
+  new Contact("Alice", "1234567890", "alice@example.com"),
+  new Contact("Bob", "9876543210", "bob@example.com"),
+];
+
+
+console.log("Dot notation:", contacts[0].name);
+console.log("Bracket notation:", contacts[0]["email"]);
+
+console.log("\nAll contacts:");
+contacts.forEach((c) => c.display());
+
+function addContacts(...newContacts) {
+  contacts.push(...newContacts); 
+}
+
+const c1 = new Contact("Charlie", "5551112222", "charlie@example.com");
+const c2 = new Contact("Diana", "4443332211", "diana@example.com");
+addContacts(c1, c2);
+
+console.log("\nAfter adding multiple contacts:");
+contacts.forEach((c) => c.display());
+
+
+const moreContacts = [
+  new Contact("Eva", "2221114444", "eva@example.com"),
+  new Contact("Frank", "9998887777", "frank@example.com"),
+];
+
+contacts = [...contacts, ...moreContacts];
+
+console.log("\nAfter merging contact arrays:");
+contacts.forEach((c) => c.display());
+
+
+const specialContact = {
+  name: "George",
+  phone: "1112223333",
+  email: "george@example.com",
+};
+console.log("\nUsing call():");
+c1.display.call(specialContact);
+console.log("\nUsing apply():");
+c1.display.apply(specialContact);
+
+console.log("\nUsing bind():");
+const boundDisplay = c1.display.bind(specialContact);
+boundDisplay();

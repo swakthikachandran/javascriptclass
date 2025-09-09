@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #17131b;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #clock {
+            background-color: #441212;
+            padding: 30px 60px;
+            border-radius: 15px;
+            font-size: 4rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            box-shadow: 0 0 20px rgba(173, 168, 168, 0.5);
+            transition: all 0.3s ease-in-out;
+        }
+
+        #clock:hover {
+            background-color: #000000;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div id="clock">loading...</div>
+
+    <script>
+        function DigitalClock() {
+            let now = new Date();
+
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+
+            hours = hours % 12;
+            hours = hours ? hours : 12; // if 0 then 12
+
+            const hh = String(hours).padStart(2, '0');
+            const mm = String(minutes).padStart(2, '0');
+            const ss = String(seconds).padStart(2, '0');
+
+            const timeString = `${hh}:${mm}:${ss} ${ampm}`;
+            document.getElementById("clock").textContent = timeString;
+        }
+
+        DigitalClock();
+        setInterval(DigitalClock, 1000);
+    </script>
+</body>
+</html>

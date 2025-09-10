@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>regularexpression</title>
+</head>
+
+<body>
+    <script>
+    //quantifiers
+    //quantifiers specify how many times a character or a group should appear
+  let text="demmanddd88888";
+  let pattern=/\a/g;
+  let pattern2=/\m/g;
+  let pattern3=/\d/g;
+  let result=text.match(pattern);
+  let result2=text.match(pattern2);
+  let result3=text.match(pattern3);
+  console.log(result)
+  console.log(result2)
+  console.log(result3)
+
+  //modifiers 
+  //modifiers(flags)change how regex matches
+
+   let sentance="hellow \n howyu??"
+   let pattern4=/\hellow+/ig;
+   let result4=sentance.match(pattern4);
+   console.log(result4)
+
+   //meta charactres
+   //metacharacters have special meaaning in regex
+// any character excepts newline
+//\d digit(0-9)
+//\w word char(letters,digits,_)
+//s whitespaces
+//^ starting of astring line
+  
+
+let digitchar="js001";
+let pattern5=/\d+\w+/g;
+let result5=digitchar.match(pattern5);
+console.log(result5);
+
+
+//grouping
+ //parenthesis() are used to group patterns and capture submatches
+
+let username="javascript program";
+let pattern6=/(\w+)/g;
+let result6=username.match(pattern6);
+console.log(result6);
+console.log(result6[0]);
+console.log(result6[1]);
+
+
+
+//methods
+//common regex methods in javascript
+//test()-returns true or false
+//exec()-returns matched result with groups
+//match()-returns array of matches
+//replace()-replaces matches
+//split()-splits string using regex
+
+let lines="apple mango apple grape";
+let pattern7=/apple/;
+console.log(pattern7.test(lines));
+
+
+let str="iam swakthika from ooty";
+const regex=/swakthika/ig;
+let result7=str.replace(regex,"swakthika chandran");
+console.log(result7);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //local storage -> stores data permanently
+        //(until cleared by user or code).
+         
+        localStorage.getItem("username","swakthika");
+        localStorage.getItem("username");
+        localStorage.removeItem("username");
+        localStorage.clear()
+
+        //storing array value in local storage:
+        //local storage only stores string not array,
+        //we need to convert array into a string (using JSON,stringify)
+
+       var D=["swakthika","bsc computer technology" ,"secondyr","kgcas"];
+       //JSON-js object notation
+       localStorage.setItem("details",JSON.stringify(D))
+       let stredarr=JSON.parse(localStorage.getItem("details"))
+       console.log(stredarr)
+       localStorage.clear()
+
+       //storing an array of objects in locsal storage
+        let subject=[{
+            "subject1":"computer science",
+            "subject2":"chemistry"
+
+        }]
+         localStorage.setItem("subjectname",JSON.stringify(subject))
+         let stredobj=JSON.parse(localStorage.getItem("subjectname"))
+
+         //session storage
+         //usefull or temporary data
+         //(like login session , form progress)
+         sessionStorage.setItem("fruits","grapes");
+         sessionStorage.getItem("fruits");
+         
+
+
+
+    </script>
+    
+</body>
+</html>
+

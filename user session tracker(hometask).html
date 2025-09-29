@@ -1,0 +1,67 @@
+
+
+
+const activeUserIDs = new Set();
+
+// A WeakMap to associate user objects with metadata
+const userMetadata = new WeakMap();
+
+// Function to add a user
+function addUser(user, userId) {
+  activeUserIDs.add(userId);
+  userMetadata.set(user, {
+    lastActivity: new Date(),
+  });
+  console.log(`User ${userId} added.`);
+}
+
+// Function to remove a user
+function removeUser(user, userId) {
+  activeUserIDs.delete(userId);
+  userMetadata.delete(user);
+  console.log(`User ${userId} removed.`);
+}
+
+// Function to update user activity
+function updateUserActivity(user, userId) {
+  if (activeUserIDs.has(userId)) {
+    userMetadata.set(user, { lastActivity: new Date() });
+    console.log(`User ${userId} activity updated.`);
+  } else {
+    console.log(`User ${userId} not found.`);
+  }
+}
+
+// Function to clean up inactive users
+function cleanUpInactiveUsers(timeoutMs) {
+  const now = new Date();
+  for (let [user, metadata] of userMetadata.entries()) {
+    if (now - metadata.lastActivity > timeoutMs) {
+      // Assume we have stored userId inside user object
+      activeUserIDs.delete(user.id);
+      userMetadata.delete(user);
+      console.log(`User ${user.id} cleaned up due to inactivity.`);
+    }
+  }
+}
+
+// Demo
+(function demo() {
+  let user1 = { id: 1, name: "Alice" };
+  let user2 = { id: 2, name: "Bob" };
+
+  addUser(user1, user1.id);
+  addUser(user2, user2.id);
+
+  updateUserActivity(user1, user1.id);
+
+  // Wait some time before cleanup
+  setTimeout(() => {
+    cleanUpInactiveUsers(2000);
+
+    // Demonstrate garbage collection by removing reference
+    user1 = null;
+    console.log("User1 object reference removed (eligible for GC).");
+
+  }, 3000);
+})();
